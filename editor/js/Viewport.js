@@ -10,6 +10,11 @@ var Viewport = function ( editor ) {
 	container.setId( 'viewport' );
 	container.setPosition( 'absolute' );
 
+	var labelbtn = new UI.Panel();
+	labelbtn.setId( 'labelbtn' );
+	labelbtn.setPosition( 'absolute' );
+
+	container.add( labelbtn );
 	container.add( new Viewport.Info( editor ) );
 
 	//
@@ -545,6 +550,7 @@ var Viewport = function ( editor ) {
 		renderer.setSize( container.dom.offsetWidth, container.dom.offsetHeight );
 
 		render();
+		label();
 
 	} );
 
@@ -554,6 +560,52 @@ var Viewport = function ( editor ) {
 		render();
 
 	} );
+
+
+	function label(){
+		var browserWidth=window.innerWidth;
+		var dragging=false;
+		var doc=document;
+		var clickX,sidebar,toolbar;
+
+		labelbtn.dom.onmousedown=function (){
+			toolbar=document.getElementById('toolbar');
+			sidebar=document.getElementById('sidebar');
+			// console.log(labelbtn)
+			// console.log(sidebar)
+			dragging=true;
+		}
+
+		doc.onmousemove=function (e){
+			
+			if(dragging){
+				clickX=e.pageX;
+				if(clickX>200&&clickX<browserWidth-50){
+					container.dom.style.width=clickX+'px';
+					toolbar.style.width=clickX+'px';
+					renderer.setSize( container.dom.offsetWidth, container.dom.offsetHeight );
+					render();
+					if(clickX<browserWidth-300){
+						sidebar.style.width=browserWidth-clickX+'px'
+					}
+				}
+				else if(clickX<=200){
+					container.dom.style.width='200px';
+					renderer.setSize( container.dom.offsetWidth, container.dom.offsetHeight );
+					render();
+				}
+				else{
+					container.dom.style.width=browserWidth-50+'px';
+					renderer.setSize( container.dom.offsetWidth, container.dom.offsetHeight );
+					render();
+				}
+			}
+		}
+		doc.onmouseup=function (){
+			dragging=false;
+		}
+
+	}
 
 	//
 
