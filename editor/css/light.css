@@ -45,16 +45,24 @@ select {
 /* UI */
 
 #viewport {
-	position: absolute;
-	top: 32px;
+	position: relative;
+	top: 0;
 	left: 0;
 	right: 300px;
-	bottom: 32px;
+	bottom: 0;
+	z-index: 100;
 }
 
 	#viewport #info {
 		text-shadow: 1px 1px 0 rgba(0,0,0,0.25);
 		pointer-events: none;
+	}
+
+	#viewport #labelbtn{
+		right: 0;
+		height: 100%;
+		border: 1px solid #000;
+		cursor: e-resize;
 	}
 
 #script {
@@ -83,6 +91,7 @@ select {
 	margin: 0;
 	right: 0;
 	top: 0;
+	z-index: 200;
 }
 
 	#menubar .menu {
@@ -195,9 +204,10 @@ select {
 	left: 0;
 	right: 300px;
 	bottom: 0;
-	height: 32px;
-	background: #eee;
+	/*height: 32px;*/
+	background: transparent;
 	color: #333;
+	z-index: 200;
 }
 
 	#toolbar * {
@@ -207,6 +217,8 @@ select {
 	#toolbar .Panel {
 		padding: 4px;
 		color: #888;
+		display: inline-block;
+		margin-right: 70px;
 	}
 
 	#toolbar button {
