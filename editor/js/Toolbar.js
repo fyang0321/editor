@@ -9,8 +9,12 @@ var Toolbar = function ( editor ) {
 	var container = new UI.Panel();
 	container.setId( 'toolbar' );
 
-	var buttons = new UI.Panel();
-	container.add( buttons );
+	var container_btns = new UI.Panel();
+	container.add( container_btns );
+	var container_grid = new UI.Panel();
+	container.add( container_grid );
+	var container_chboxs = new UI.Panel();
+	container.add( container_chboxs );
 
 	// translate / rotate / scale
 
@@ -22,7 +26,7 @@ var Toolbar = function ( editor ) {
 		signals.transformModeChanged.dispatch( 'translate' );
 
 	} );
-	buttons.add( translate );
+	container_btns.add( translate );
 
 	var rotate = new UI.Button( 'rotate' );
 	rotate.dom.title = 'E';
@@ -31,7 +35,7 @@ var Toolbar = function ( editor ) {
 		signals.transformModeChanged.dispatch( 'rotate' );
 
 	} );
-	buttons.add( rotate );
+	container_btns.add( rotate );
 
 	var scale = new UI.Button( 'scale' );
 	scale.dom.title = 'R';
@@ -39,8 +43,15 @@ var Toolbar = function ( editor ) {
 
 		signals.transformModeChanged.dispatch( 'scale' );
 
-	} );
-	buttons.add( scale );
+	});
+	container_btns.add( scale );
+
+	var popup = new UI.Button( 'popup' );
+	popup.dom.title = 'P';
+	popup.onClick( function (event) {
+		ModalManager.openModal('3D-text-modal')
+	});
+	container_btns.add( popup );
 
 	signals.transformModeChanged.add( function ( mode ) {
 
@@ -61,17 +72,17 @@ var Toolbar = function ( editor ) {
 	// grid
 
 	var grid = new UI.Number( 25 ).setWidth( '40px' ).onChange( update );
-	buttons.add( new UI.Text( 'grid: ' ) );
-	buttons.add( grid );
+	container_grid.add( new UI.Text( 'grid: ' ) );
+	container_grid.add( grid );
 
 	var snap = new UI.THREE.Boolean( false, 'snap' ).onChange( update );
-	buttons.add( snap );
+	container_chboxs.add( snap );
 
 	var local = new UI.THREE.Boolean( false, 'local' ).onChange( update );
-	buttons.add( local );
+	container_chboxs.add( local );
 
 	var showGrid = new UI.THREE.Boolean( true, 'show' ).onChange( update );
-	buttons.add( showGrid );
+	container_chboxs.add( showGrid );
 
 	function update() {
 

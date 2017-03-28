@@ -59,6 +59,46 @@
 		<link rel="stylesheet" href="js/libs/codemirror/addon/dialog.css">
 		<link rel="stylesheet" href="js/libs/codemirror/addon/show-hint.css">
 		<link rel="stylesheet" href="js/libs/codemirror/addon/tern.css">
+		<!-- The Modal -->
+		<div id="3D-text-modal" class="modal">
+		  <!-- Modal content -->
+		  <div class="modal-content">
+		    <span class="close">&times;</span>
+		    <form>
+				  <span>size:</span><input class="popup-input" type="number" name="size">
+					<br>
+				  <span>height:</span><input class="popup-input" type="text" name="height">
+					<br>
+					<span>weight:</span><select class="popup-input" name="weight">
+						<option value='regular'>regular</option>
+					</select>
+					<!-- <span>font:</span><input class="popup-input" type="text" name="font"> -->
+					<br>
+					<span>style:</span><select class="popup-input" name="style">
+						<option value='normal'>normal</option>
+					</select>
+					<br>
+					<span>bevelThickness:</span><input class="popup-input" type="number" name="bevelThickness">
+					<br>
+					<span>bevelSize:</span><input class="popup-input" type="number" name="bevelSize">
+					<br>
+					<span>bevelSegments:</span><input class="popup-input" type="number" name="bevelSegments">
+					<br>
+					<span>bevelEnabled:</span>
+					<input class="popup-input" type="radio" name="bevelEnabled" value="true"> True
+					<input class="popup-input" type="radio" name="bevelEnabled" value="false"> False
+					<br>
+					<span>curveSegments:</span><input class="popup-input" type="number" name="curveSegments">
+					<br>
+					<span>steps:</span><input class="popup-input" type="number" name="steps">
+					<br>
+					<span>text:</span><input class="popup-input" type="text" name="text">
+					<br>
+					<input class="submit" type="button" value="Submit">
+				</form>
+		  </div>
+		</div>
+		<script src="js/Modal.js"></script>
 		<script src="js/libs/codemirror/addon/dialog.js"></script>
 		<script src="js/libs/codemirror/addon/show-hint.js"></script>
 		<script src="js/libs/codemirror/addon/tern.js"></script>
